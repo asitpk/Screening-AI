@@ -255,7 +255,7 @@ export default function Home() {
         }
     }
 
-    console.log('Timer-->', timer);
+   // console.log('Timer-->', timer);
     useEffect(() => {
         setTimeout(() => {
             setTimer(timer + 1);
