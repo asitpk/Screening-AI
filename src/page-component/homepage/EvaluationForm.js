@@ -112,7 +112,6 @@ export default function EvaluationForm(props) {
             question: question,
             answer: answer
         };
-
         axios.post(
             'https://5d75-49-206-121-157.ngrok-free.app/evaluate-answer',
             data,
@@ -162,22 +161,6 @@ export default function EvaluationForm(props) {
                         Get Started
                     </Link>
                 }
-                {/* {
-                    open &&
-                    <IconButton
-                        sx={{
-                            color: (theme) => theme.palette.grey[300],
-                        }}>
-                        <Refresh color="inherit"
-                            onClick={() => {
-                                setOpen(false);
-                                setQuestion("What is Python");
-                                setAnswer("Python is a high-level, interpreted programming language that was first released in 1991 by Guido van Rossum. It is designed to be easy to read and write, with a syntax that emphasizes code readability and simplicity. Python is widely used for a variety of purposes, including web development, data analysis, scientific computing, artificial intelligence, machine learning, and automation.");
-                                setEvaluateData(7);
-                                setShowRating(true);
-                            }} />
-                    </IconButton>
-                } */}
             </Box>
 
             {
@@ -203,7 +186,7 @@ export default function EvaluationForm(props) {
                         <Typography
                             align='right'
                             variant="caption"
-                            sx={{ color: 'white', width: "100%" }}
+                            sx={{ color: 'white', width: "100%", mt: 1 }}
                         >
                             {`${job?.length || 0}/${JOB_CHARACTER_LIMIT}`}
                         </Typography>
@@ -233,7 +216,6 @@ export default function EvaluationForm(props) {
                                 </Typography>
                             </Stack>
                         }
-
                     </Stack>
                     :
                     <>
@@ -243,26 +225,6 @@ export default function EvaluationForm(props) {
                                 <Typography sx={{ textTransform: 'uppercase' }}>
                                     JOB : {job}
                                 </Typography>
-
-                                {/* <Link
-                                        component="button"
-                                        variant="body2"
-                                        // underline="always"
-                                        onClick={() => {
-                                            setOpen(true);
-                                            // setQuestion("");
-                                            // setAnswer("");
-                                            // setEvaluateData();
-                                            setStep(1);
-                                        }}
-                                        sx={{
-                                            left: 30,
-                                            //top: 45,
-                                            color: (theme) => theme.palette.grey[300],
-                                        }}
-                                    >
-                                        <small>Back</small>
-                                    </Link> */}
                                 {
                                     open &&
                                     <Tooltip placement={'top'} title="Back to Job">
@@ -271,13 +233,6 @@ export default function EvaluationForm(props) {
                                                 color: (theme) => theme.palette.grey[300],
                                             }}>
                                             <Refresh color="inherit"
-                                                // onClick={() => {
-                                                //     setOpen(false);
-                                                //     setQuestion("What is Python");
-                                                //     setAnswer("Python is a high-level, interpreted programming language that was first released in 1991 by Guido van Rossum. It is designed to be easy to read and write, with a syntax that emphasizes code readability and simplicity. Python is widely used for a variety of purposes, including web development, data analysis, scientific computing, artificial intelligence, machine learning, and automation.");
-                                                //     setEvaluateData(7);
-                                                //     setShowRating(true);
-                                                // }} 
                                                 onClick={handleReset}
                                             />
                                         </IconButton>
@@ -286,7 +241,6 @@ export default function EvaluationForm(props) {
                             </Box>
                         }
                         <Stack alignItems={'flex-end'} width={'100%'} mt={3} mb={2}>
-
                             <TextField
                                 variant={'outlined'}
                                 size={'small'}
@@ -314,8 +268,6 @@ export default function EvaluationForm(props) {
                                     Clear Text
                                 </Button>
                             }
-
-
                             <TextField
                                 variant={'outlined'}
                                 size={'small'}
@@ -374,7 +326,6 @@ export default function EvaluationForm(props) {
                                     </Typography>
                                 </Stack>
                             }
-
                         </Stack>
                     </>
 
@@ -430,7 +381,6 @@ export default function EvaluationForm(props) {
                     </>
 
             }
-
         </Stack>
     )
 }
