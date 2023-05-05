@@ -368,7 +368,7 @@ export default function EvaluationForm(props) {
             }
 
 
-            {
+            {/* {
                 evaluateData && !isNaN(evaluateData) && evaluateData > 0 && evaluateData <= 10 && !evaluationLoading && showRating ?
                     <>
                         <Box display={'flex'} justifyContent={'center'} alignItems={'center'} mt={2} width={'100%'}>
@@ -380,6 +380,30 @@ export default function EvaluationForm(props) {
                         </Stack>
                     </>
                     :
+                    <>
+                        <Box display={'flex'} justifyContent={'center'} alignItems={'center'} mt={2} width={'100%'}>
+                            <Typography sx={{ fontSize: 15 }} component="legend">Evaluation Score : {0 + "/" + "10"}</Typography>
+                            <Typography sx={{ ml: 1, fontSize: 15 }}>{labels[evaluateData]}</Typography>
+                        </Box>
+                        <Stack justifyContent={'center'} alignItems={'center'} width={'100%'}>
+                            <StyledRating sx={{ mt: 1 }} size="large" name="read-only" value={0} max={10} readOnly />
+                        </Stack>
+                    </>
+
+            } */}
+             {
+                evaluateData && evaluateData <= 10 && !evaluationLoading && showRating ?
+                    <>
+                        <Box display={'flex'} justifyContent={'center'} alignItems={'center'} mt={2} width={'100%'}>
+                            <Typography sx={{ fontSize: 15 }} component="legend">Evaluation Score : {evaluateData + "/" + "10"}</Typography>
+                            <Typography sx={{ ml: 1, fontSize: 15 }}>{labels[evaluateData]}</Typography>
+                        </Box>
+                        <Stack justifyContent={'center'} alignItems={'center'} width={'100%'}>
+                            <StyledRating sx={{ mt: 1 }} name="read-only" size="large" value={evaluateData} max={10} readOnly />
+                        </Stack>
+                    </>
+                    :
+                    evaluateData === 0 || evaluateData > 10 &&
                     <>
                         <Box display={'flex'} justifyContent={'center'} alignItems={'center'} mt={2} width={'100%'}>
                             <Typography sx={{ fontSize: 15 }} component="legend">Evaluation Score : {0 + "/" + "10"}</Typography>
