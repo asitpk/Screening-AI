@@ -17,7 +17,7 @@ const StyledRating = styled(Rating)({
     },
 });
 
-const JOB_CHARACTER_LIMIT = 100;
+const JOB_CHARACTER_LIMIT = 30;
 
 export default function EvaluationForm(props) {
     const { onClose, open, setOpen, resetClicked } = props;
@@ -60,6 +60,8 @@ export default function EvaluationForm(props) {
         setEvaluationLoading1(false);
     }
 
+    console.log("evaluateData", evaluateData);
+
     useEffect(() => {
         if (resetClicked !== 0)
             handleReset();
@@ -71,7 +73,7 @@ export default function EvaluationForm(props) {
             "jobRole": job
         };
         axios.post(
-            'https://f38b-49-206-123-165.ngrok-free.app/generate-question',
+            'https://5d75-49-206-121-157.ngrok-free.app/generate-question',
             data,
             {
                 headers: {
@@ -112,7 +114,7 @@ export default function EvaluationForm(props) {
         };
 
         axios.post(
-            'https://f38b-49-206-123-165.ngrok-free.app/evaluate-answer',
+            'https://5d75-49-206-121-157.ngrok-free.app/evaluate-answer',
             data,
             {
                 headers: {
@@ -284,19 +286,14 @@ export default function EvaluationForm(props) {
                             </Box>
                         }
                         <Stack alignItems={'flex-end'} width={'100%'} mt={3} mb={2}>
-                            {/* <Button
-                                sx={{ color: 'white' }}
-                                onClick={() => setQuestion('')}
-                            >
-                                Clear Text
-                            </Button> */}
+
                             <TextField
                                 variant={'outlined'}
                                 size={'small'}
                                 label={!open ? "Sample Question" : "Type Your Question"}
                                 fullWidth
                                 multiline
-                                InputProps={{readOnly: !open}}
+                                InputProps={{ readOnly: !open }}
                                 rows={3}
                                 value={question}
                                 color={'secondary'}
@@ -307,12 +304,18 @@ export default function EvaluationForm(props) {
                             // placeholder={'Type Your Question'}
                             />
 
-                            {/* <Button
-                                sx={{ color: 'white' }}
-                                onClick={() => setAnswer('')}
-                            >
-                                Clear Text
-                            </Button> */}
+                            {
+                                open && question.trim().length > 0 &&
+                                <Button
+                                    size="small"
+                                    sx={{ color: 'white' }}
+                                    onClick={() => setQuestion('')}
+                                >
+                                    Clear Text
+                                </Button>
+                            }
+
+
                             <TextField
                                 variant={'outlined'}
                                 size={'small'}
@@ -330,6 +333,16 @@ export default function EvaluationForm(props) {
                                 focused
                             //placeholder={'Type Your Answer'}
                             />
+                            {
+                                open && answer.trim().length > 0 &&
+                                <Button
+                                    size="small"
+                                    sx={{ color: 'white', mt: 0 }}
+                                    onClick={() => setAnswer('')}
+                                >
+                                    Clear Text
+                                </Button>
+                            }
 
                             {
                                 // (((questionStep === 1 && question.trim().length > 0) || (questionStep === 2 && answer.trim().length > 0)) && !evaluationLoading) &&
@@ -390,9 +403,11 @@ export default function EvaluationForm(props) {
                         </Stack>
                     </>
 
-            } */}
-             {
-                evaluateData && evaluateData <= 10 && !evaluationLoading && showRating ?
+            }
+             */}
+
+            {
+                evaluateData && !evaluationLoading && evaluateData > 0 && showRating ?
                     <>
                         <Box display={'flex'} justifyContent={'center'} alignItems={'center'} mt={2} width={'100%'}>
                             <Typography sx={{ fontSize: 15 }} component="legend">Evaluation Score : {evaluateData + "/" + "10"}</Typography>
@@ -403,7 +418,7 @@ export default function EvaluationForm(props) {
                         </Stack>
                     </>
                     :
-                    evaluateData === 0 || evaluateData > 10 &&
+                    evaluateData === 0 &&
                     <>
                         <Box display={'flex'} justifyContent={'center'} alignItems={'center'} mt={2} width={'100%'}>
                             <Typography sx={{ fontSize: 15 }} component="legend">Evaluation Score : {0 + "/" + "10"}</Typography>
@@ -415,6 +430,7 @@ export default function EvaluationForm(props) {
                     </>
 
             }
+
         </Stack>
     )
 }
