@@ -306,26 +306,31 @@ export default function EvaluationForm(props) {
                                 focused
                             // placeholder={'Type Your Question'}
                             />
-                            {
-                                // questionStep === 2 &&
-                                <TextField
-                                    variant={'outlined'}
-                                    size={'small'}
-                                    label={!open ? "Answer" : "Type Your Answer"}
-                                    fullWidth
-                                    multiline
-                                    InputProps={{ readOnly: !open }}
-                                    rows={6}
-                                    value={answer}
-                                    color={'secondary'}
-                                    onChange={(e) => {
-                                        setAnswer(e.target.value);
-                                    }}
-                                    sx={{ mt: 4 }}
-                                    focused
-                                //placeholder={'Type Your Answer'}
-                                />
-                            }
+
+                            <Button
+                                sx={{ color: 'white' }}
+                                onClick={() => setAnswer('')}
+                            >
+                                Clear Text
+                            </Button>
+                            <TextField
+                                variant={'outlined'}
+                                size={'small'}
+                                label={!open ? "Answer" : "Type Your Answer"}
+                                fullWidth
+                                multiline
+                                InputProps={{ readOnly: !open }}
+                                rows={6}
+                                value={answer}
+                                color={'secondary'}
+                                onChange={(e) => {
+                                    setAnswer(e.target.value);
+                                }}
+                                sx={{ mt: 4 }}
+                                focused
+                            //placeholder={'Type Your Answer'}
+                            />
+
                             {
                                 // (((questionStep === 1 && question.trim().length > 0) || (questionStep === 2 && answer.trim().length > 0)) && !evaluationLoading) &&
                                 (((question.trim().length > 0) && (answer.trim().length > 0)) && !evaluationLoading && open) &&
@@ -364,7 +369,7 @@ export default function EvaluationForm(props) {
 
 
             {
-                evaluateData && evaluateData <= 10 && !evaluationLoading && showRating ?
+                evaluateData && !isNaN(evaluateData) && evaluateData > 0 && evaluateData <= 10 && !evaluationLoading && showRating ?
                     <>
                         <Box display={'flex'} justifyContent={'center'} alignItems={'center'} mt={2} width={'100%'}>
                             <Typography sx={{ fontSize: 15 }} component="legend">Evaluation Score : {evaluateData + "/" + "10"}</Typography>
@@ -375,7 +380,6 @@ export default function EvaluationForm(props) {
                         </Stack>
                     </>
                     :
-                    evaluateData === 0 || evaluateData > 10 &&
                     <>
                         <Box display={'flex'} justifyContent={'center'} alignItems={'center'} mt={2} width={'100%'}>
                             <Typography sx={{ fontSize: 15 }} component="legend">Evaluation Score : {0 + "/" + "10"}</Typography>
