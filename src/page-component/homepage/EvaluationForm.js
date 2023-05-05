@@ -17,6 +17,8 @@ const StyledRating = styled(Rating)({
     },
 });
 
+const JOB_CHARACTER_LIMIT = 100;
+
 export default function EvaluationForm(props) {
     const { onClose, open, setOpen, resetClicked } = props;
 
@@ -187,12 +189,22 @@ export default function EvaluationForm(props) {
                             value={job}
                             color={'secondary'}
                             onChange={(e) => {
-                                setJob(e.target.value);
+                                let _value = e.target.value;
+                                if (_value.length <= JOB_CHARACTER_LIMIT) {
+                                    setJob(_value)
+                                }
                             }}
                             focused
                         //placeholder={'Type Your Job'}
                         />
 
+                        <Typography
+                            align='right'
+                            variant="caption"
+                            sx={{ color: 'white', width: "100%" }}
+                        >
+                            {`${job?.length || 0}/${JOB_CHARACTER_LIMIT}`}
+                        </Typography>
                         {
                             job.trim().length > 0 && !jobLoading &&
                             <Button
@@ -252,33 +264,39 @@ export default function EvaluationForm(props) {
                                 {
                                     open &&
                                     <Tooltip placement={'top'} title="Back to Job">
-                                    <IconButton
-                                        sx={{
-                                            color: (theme) => theme.palette.grey[300],
-                                        }}>
-                                        <Refresh color="inherit"
-                                            // onClick={() => {
-                                            //     setOpen(false);
-                                            //     setQuestion("What is Python");
-                                            //     setAnswer("Python is a high-level, interpreted programming language that was first released in 1991 by Guido van Rossum. It is designed to be easy to read and write, with a syntax that emphasizes code readability and simplicity. Python is widely used for a variety of purposes, including web development, data analysis, scientific computing, artificial intelligence, machine learning, and automation.");
-                                            //     setEvaluateData(7);
-                                            //     setShowRating(true);
-                                            // }} 
-                                            onClick={handleReset}
+                                        <IconButton
+                                            sx={{
+                                                color: (theme) => theme.palette.grey[300],
+                                            }}>
+                                            <Refresh color="inherit"
+                                                // onClick={() => {
+                                                //     setOpen(false);
+                                                //     setQuestion("What is Python");
+                                                //     setAnswer("Python is a high-level, interpreted programming language that was first released in 1991 by Guido van Rossum. It is designed to be easy to read and write, with a syntax that emphasizes code readability and simplicity. Python is widely used for a variety of purposes, including web development, data analysis, scientific computing, artificial intelligence, machine learning, and automation.");
+                                                //     setEvaluateData(7);
+                                                //     setShowRating(true);
+                                                // }} 
+                                                onClick={handleReset}
                                             />
-                                    </IconButton>
+                                        </IconButton>
                                     </Tooltip>
                                 }
                             </Box>
                         }
                         <Stack alignItems={'flex-end'} width={'100%'} mt={3} mb={2}>
+                            <Button
+                                sx={{ color: 'white' }}
+                                onClick={() => setQuestion('')}
+                            >
+                                Clear Text
+                            </Button>
                             <TextField
                                 variant={'outlined'}
                                 size={'small'}
                                 label={!open ? "Sample Question" : "Type Your Question"}
                                 fullWidth
                                 multiline
-                                InputProps={{readOnly: !open}}
+                                // InputProps={{readOnly: !open}}
                                 rows={3}
                                 value={question}
                                 color={'secondary'}
@@ -296,7 +314,7 @@ export default function EvaluationForm(props) {
                                     label={!open ? "Answer" : "Type Your Answer"}
                                     fullWidth
                                     multiline
-                                    InputProps={{readOnly: !open}}
+                                    InputProps={{ readOnly: !open }}
                                     rows={6}
                                     value={answer}
                                     color={'secondary'}
@@ -346,26 +364,26 @@ export default function EvaluationForm(props) {
 
 
             {
-                evaluateData  && evaluateData <= 10 && !evaluationLoading && showRating ?
+                evaluateData && evaluateData <= 10 && !evaluationLoading && showRating ?
                     <>
-                        <Box display={'flex'} mt={2} width={'auto'}>
-                            <Typography sx={{ mb: 1, fontSize:15 }} component="legend">Evaluation Score : {evaluateData + "/" + "10"}</Typography>
-                            <Typography sx={{ ml: 2 , fontSize:15}}>{labels[evaluateData]}</Typography>
+                        <Box display={'flex'} justifyContent={'center'} alignItems={'center'} mt={2} width={'100%'}>
+                            <Typography sx={{ fontSize: 15 }} component="legend">Evaluation Score : {evaluateData + "/" + "10"}</Typography>
+                            <Typography sx={{ ml: 1, fontSize: 15 }}>{labels[evaluateData]}</Typography>
                         </Box>
-                        <Box justifyContent={'center'} alignItems={'center'} width={'auto'}>
-                            <StyledRating sx={{ mt: 1, width: 'auto' }} name="read-only" size="large" value={evaluateData} max={10} readOnly />
-                        </Box>
+                        <Stack justifyContent={'center'} alignItems={'center'} width={'100%'}>
+                            <StyledRating sx={{ mt: 1 }} name="read-only" size="large" value={evaluateData} max={10} readOnly />
+                        </Stack>
                     </>
                     :
-                    evaluateData === 0 ||  evaluateData > 10 &&
+                    evaluateData === 0 || evaluateData > 10 &&
                     <>
-                        <Box display={'flex'} mt={2} width={'auto'}>
-                            <Typography sx={{ mb: 1, fontSize:15 }} component="legend">Evaluation Score : {0 + "/" + "10"}</Typography>
-                            <Typography sx={{ ml: 2, fontSize:15 }}>{labels[evaluateData]}</Typography>
+                        <Box display={'flex'} justifyContent={'center'} alignItems={'center'} mt={2} width={'100%'}>
+                            <Typography sx={{ fontSize: 15 }} component="legend">Evaluation Score : {0 + "/" + "10"}</Typography>
+                            <Typography sx={{ ml: 1, fontSize: 15 }}>{labels[evaluateData]}</Typography>
                         </Box>
-                        <Box justifyContent={'center'} alignItems={'center'} width={'auto'}>
-                            <StyledRating sx={{ mt: 1, width: 'auto' }} size="large" name="read-only" value={0} max={10} readOnly />
-                        </Box>
+                        <Stack justifyContent={'center'} alignItems={'center'} width={'100%'}>
+                            <StyledRating sx={{ mt: 1 }} size="large" name="read-only" value={0} max={10} readOnly />
+                        </Stack>
                     </>
 
             }
