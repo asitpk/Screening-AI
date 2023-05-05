@@ -284,19 +284,19 @@ export default function EvaluationForm(props) {
                             </Box>
                         }
                         <Stack alignItems={'flex-end'} width={'100%'} mt={3} mb={2}>
-                            <Button
+                            {/* <Button
                                 sx={{ color: 'white' }}
                                 onClick={() => setQuestion('')}
                             >
                                 Clear Text
-                            </Button>
+                            </Button> */}
                             <TextField
                                 variant={'outlined'}
                                 size={'small'}
                                 label={!open ? "Sample Question" : "Type Your Question"}
                                 fullWidth
                                 multiline
-                                // InputProps={{readOnly: !open}}
+                                InputProps={{readOnly: !open}}
                                 rows={3}
                                 value={question}
                                 color={'secondary'}
@@ -307,12 +307,12 @@ export default function EvaluationForm(props) {
                             // placeholder={'Type Your Question'}
                             />
 
-                            <Button
+                            {/* <Button
                                 sx={{ color: 'white' }}
                                 onClick={() => setAnswer('')}
                             >
                                 Clear Text
-                            </Button>
+                            </Button> */}
                             <TextField
                                 variant={'outlined'}
                                 size={'small'}
