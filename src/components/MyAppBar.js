@@ -18,11 +18,14 @@ function DrawerAppBar(props) {
                 <Toolbar>
                     <Stack
                         onClick={() => {
-                            router.reload();
+                            router.push('https://personifwy.com');
                         }}
                         direction={'row'}
                          alignItems={'center'} 
                          flexGrow={1}
+                         sx={{
+                            cursor: 'pointer'
+                        }}
                          >
                         <img src={'/images/logo-new-dark1.png'} width={"auto"} height={40} />
                     </Stack>

@@ -335,7 +335,7 @@ export default function EvaluationForm(props) {
                 !evaluationLoading && showRating &&
                 <>
                     <Box display={'flex'} justifyContent={'center'} alignItems={'center'} mt={2} width={'100%'}>
-                        <Typography sx={{ fontSize: 15 }} component="legend">Evaluation Score : {evaluateData && !isNaN(evaluateData) && evaluateData > 0 && evaluateData <= 10 ? evaluateData : 0 + "/" + "10"}</Typography>
+                        <Typography sx={{ fontSize: 15 }} component="legend">Evaluation Score : {evaluateData && !isNaN(evaluateData) && evaluateData > 0 && evaluateData <= 10 ? evaluateData + "/" + "10" : 0 + "/" + "10"}</Typography>
                         <Typography sx={{ ml: 1, fontSize: 15 }}>{labels[evaluateData && !isNaN(evaluateData) && evaluateData > 0 && evaluateData <= 10 ? evaluateData : 0]}</Typography>
                     </Box>
                     <Stack justifyContent={'center'} alignItems={'center'} width={'100%'}>
