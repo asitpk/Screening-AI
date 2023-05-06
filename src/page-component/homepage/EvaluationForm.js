@@ -41,7 +41,7 @@ export default function EvaluationForm(props) {
     const [step, setStep] = useState(1);
     const [questionStep, setQuestionStep] = useState(1);
     const [job, setJob] = useState('');
-    const [question, setQuestion] = useState('What is Python');
+    const [question, setQuestion] = useState('What is Python?');
     const [answer, setAnswer] = useState('Python is a high-level, interpreted programming language that was first released in 1991 by Guido van Rossum. It is designed to be easy to read and write, with a syntax that emphasizes code readability and simplicity. Python is widely used for a variety of purposes, including web development, data analysis, scientific computing, artificial intelligence, machine learning, and automation.');
     const [evaluateData, setEvaluateData] = useState(7);
     const [evaluationLoading, setEvaluationLoading] = useState(false);
