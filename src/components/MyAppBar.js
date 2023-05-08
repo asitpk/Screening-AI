@@ -17,17 +17,19 @@ function DrawerAppBar(props) {
             <AppBar component="nav">
                 <Toolbar>
                     <Stack
-                        onClick={() => {
-                            router.push('https://personifwy.com');
-                        }}
+                        // onClick={() => {
+                        //     router.push('https://personifwy.com');
+                        // }}
                         direction={'row'}
-                         alignItems={'center'} 
-                         flexGrow={1}
-                         sx={{
+                        alignItems={'center'}
+                        flexGrow={1}
+                        sx={{
                             cursor: 'pointer'
                         }}
-                         >
-                        <img src={'/images/logo-new-dark1.png'} width={"auto"} height={40} />
+                    >
+                        <a href={"https://personifwy.com"} target={'_blank'}>
+                            <img src={'/images/logo-new-dark1.png'} width={"auto"} height={40} />
+                        </a>
                     </Stack>
                     <Box>
                         <Button
