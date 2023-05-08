@@ -278,7 +278,7 @@ export default function Home() {
                         {'evaluation of candidate for specific roles in just a matter of minutes.'}
                     </Typography>
                     {sentEmail &&
-                        <Typography mt={4} align={'center'} sx={{ lineHeight: 1.3, zIndex: 100, color: "#ff9249" }}>
+                        <Typography mt={4} align={'center'} sx={{ lineHeight: 1.3, zIndex: 100, color: "#EA7A2F" }}>
                             {/* We have sent email to <span>{email}.</span>  <br />
                             We will notify you for future announcements. */}
                             Thank you for your interest in HrGPT. <br />
@@ -448,7 +448,7 @@ export default function Home() {
                 {sentEmail2 &&
                     <Box display={'flex'} alignItems={'center'} mt={2}>
 
-                        <Typography mt={4} align={'center'} sx={{ lineHeight: 1.3, zIndex: 100, color: "#ff9249" }}>
+                        <Typography mt={4} align={'center'} sx={{ lineHeight: 1.3, zIndex: 100, color: "#EA7A2F" }}>
                             Thank you for your interest in HrGPT. <br />
                             We will notify you for future announcements.
                         </Typography>
