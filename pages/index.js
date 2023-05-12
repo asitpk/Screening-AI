@@ -180,7 +180,7 @@ export default function Home() {
                 "email": email.trim()
             };
             axios.post(
-                'https://188d-49-206-121-157.ngrok-free.app/email',
+                `${process.env.baseUrl}/email`,
                 data,
                 {
                     headers: {
@@ -214,7 +214,7 @@ export default function Home() {
                 "email": email2.trim()
             };
             axios.post(
-                'https://188d-49-206-121-157.ngrok-free.app/email',
+                `${process.env.baseUrl}/email`,
                 data,
                 {
                     headers: {

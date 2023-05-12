@@ -73,7 +73,7 @@ export default function EvaluationForm(props) {
             "jobRole": job
         };
         axios.post(
-            'https://188d-49-206-121-157.ngrok-free.app/generate-question',
+            `${process.env.baseUrl}/generate-question`,
             data,
             {
                 headers: {
@@ -113,7 +113,7 @@ export default function EvaluationForm(props) {
             answer: answer
         };
         axios.post(
-            'https://188d-49-206-121-157.ngrok-free.app/evaluate-answer',
+            `${process.env.baseUrl}/evaluate-answer`,
             data,
             {
                 headers: {
